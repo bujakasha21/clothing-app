@@ -3,11 +3,6 @@ import SignUpForm from "../../components/sign-up-form/sign-up-form.components";
 
 import "./sign-in.styles.scss";
 
-import {
-  signInWithGooglePopup,
-  createUserDocfromAuth,
-} from "../../utils/firebase/firebase.utils";
-
 const SignIn = () => {
   return (
     <div className="signing-in-container">
