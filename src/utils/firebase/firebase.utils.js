@@ -44,11 +44,15 @@ export const db = getFirestore();
 
 //add docs and collections
 
-export const addCollectionAndDocs = async (collKey, objToAdd) => {
-  const collectionRef = collection(db, collKey);
+export const addCollectionAndDocuments = async (
+  collectionKey,
+  objectsToAdd,
+  field
+) => {
+  const collectionRef = collection(db, collectionKey);
   const batch = writeBatch(db);
 
-  objToAdd.forEach((object) => {
+  objectsToAdd.forEach((object) => {
     const docRef = doc(collectionRef, object.title.toLowerCase());
     batch.set(docRef, object);
   });
@@ -59,21 +63,15 @@ export const addCollectionAndDocs = async (collKey, objToAdd) => {
 
 //get docs and categories
 
-export const getCategoriesAndDocs = async () => {
-  const collRef = collection(db, "categories");
-  const q = query(collRef);
+export const getCategoriesAndDocuments = async () => {
+  const collectionRef = collection(db, "categories");
+  const q = query(collectionRef);
 
   const querySnapshot = await getDocs(q);
-  const categoryMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
-    const { title, items } = docSnapshot.data();
-    acc[title.toLowerCase()] = items;
-    return acc;
-  }, {});
-
-  return categoryMap;
+  return querySnapshot.docs.map((docSnapshot) => docSnapshot.data());
 };
 
-export const createUserDocfromAuth = async (
+export const createUserDocumentfromAuth = async (
   userAuth,
   additionalInformation = {}
 ) => {
@@ -101,7 +99,7 @@ export const createUserDocfromAuth = async (
   }
 
   //if user data exist
-  return userDocRef;
+  return userSnapshot;
 };
 
 export const createAuthUserWithEmailAndPassword = async (email, password) => {
@@ -120,3 +118,16 @@ export const signOutUser = async () => await signOut(auth);
 
 export const onAuthStateChangedListener = (callback) =>
   onAuthStateChanged(auth, callback);
+
+export const getCurrentUser = () => {
+  return new Promise((res, rej) => {
+    const unsubscribe = onAuthStateChanged(
+      auth,
+      (userAuth) => {
+        unsubscribe();
+        res(userAuth);
+      },
+      rej
+    );
+  });
+};
