@@ -2,7 +2,7 @@ import { Key } from "react";
 import DirectoryItem from "../directory-item/directory-item.components";
 
 //styles
-import { MainContainer } from "./directory.styles";
+import { Description, MainContainer, SmallBorder } from "./directory.styles";
 
 export type DirectoryCategory = {
   id: Key;
@@ -46,11 +46,17 @@ const categories: DirectoryCategory[] = [
 
 const Directory = () => {
   return (
-    <MainContainer>
-      {categories.map((category) => (
-        <DirectoryItem key={category.id} category={category} />
-      ))}
-    </MainContainer>
+    <>
+      <Description>
+        Our Outlet
+        <SmallBorder />
+      </Description>
+      <MainContainer>
+        {categories.map((category) => (
+          <DirectoryItem key={category.id} category={category} />
+        ))}
+      </MainContainer>
+    </>
   );
 };
 

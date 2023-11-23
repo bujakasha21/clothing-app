@@ -29,12 +29,24 @@ export const BaseButton = styled.button`
 `;
 
 export const GoogleSignInButton = styled(BaseButton)`
-  background-color: #4285f4;
+  background-color: #413f42;
   color: white;
 
   &:hover {
-    background-color: #357ae8;
+    background-color: #7f8487;
     border: none;
+  }
+`;
+
+export const HeroButton = styled(BaseButton)`
+  background-color: transparent;
+  color: #fff;
+  border: 2px solid #fff;
+  font-size: 20px;
+
+  &:hover {
+    background-color: #fff;
+    border: 2px solid #000;
   }
 `;
 
