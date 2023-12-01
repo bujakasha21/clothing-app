@@ -16,7 +16,7 @@ export const Description = styled.h2`
   font-family: "Open Sans Condensed";
   text-transform: uppercase;
   color: #000;
-  margin-bottom: 4rem;
+  margin-bottom: 6rem;
 `;
 
 export const SmallBorder = styled.div`

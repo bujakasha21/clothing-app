@@ -4,11 +4,12 @@ import image from "../../assets/BackgroundImage.png";
 import { Link } from "react-router-dom";
 
 export const HeroBackgroundImage = styled.div`
-  width: 100%;
+  max-width: 100%;
   height: 40rem;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-items: center;
   background-image: url(${image});
   background-size: cover;
   border-radius: 20px;
@@ -19,15 +20,21 @@ export const HeroBackgroundImage = styled.div`
 `;
 
 export const HeadingTitle = styled.h1`
+  display: flex;
   text-transform: uppercase;
   font-size: 4.5rem;
   color: #fff;
   font-weight: 600;
-  margin: 11rem auto 4.5rem;
+  margin: 11rem 3rem 4.5rem;
   padding-bottom: 1rem;
   border-bottom: 2px solid #470b0b;
   border-radius: 20px;
   border-width: 0.7rem;
+
+  @media (max-width: 768px) {
+    font-size: 3.5rem;
+    border: none;
+  }
 `;
 
 export const LinkButton = styled(Link)`

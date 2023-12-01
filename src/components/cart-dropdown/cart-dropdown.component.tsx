@@ -1,3 +1,5 @@
+import { useCallback } from "react";
+
 //styles
 import {
   CartDropdownContainer,
@@ -16,9 +18,9 @@ const CartDropdown = () => {
   const cartItems = useSelector(selectCartItems);
   const navigate = useNavigate();
 
-  const goToCheckout = () => {
+  const goToCheckout = useCallback(() => {
     navigate("/checkout");
-  };
+  }, []);
 
   return (
     <CartDropdownContainer>
